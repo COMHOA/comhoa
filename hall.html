@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Hall of Autism</title>
+  <style>
+    body {
+      margin: 0;
+      background-color: black;
+      color: white;
+      font-family: monospace;
+      padding: 30px 40px;
+    }
+
+    .ascii {
+      font-size: 6px;
+      white-space: pre;
+      line-height: 6px;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .title {
+      font-size: 24px;
+      font-weight: bold;
+      animation: glow 4s linear infinite;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    @keyframes glow {
+      0%   { color: red; text-shadow: 0 0 10px red; }
+      25%  { color: blue; text-shadow: 0 0 10px blue; }
+      50%  { color: green; text-shadow: 0 0 10px green; }
+      75%  { color: magenta; text-shadow: 0 0 10px magenta; }
+      100% { color: red; text-shadow: 0 0 10px red; }
+    }
+
+    .card-wrapper {
+      display: flex;
+      justify-content: flex-start;
+      margin-top: 20px;
+      padding-left: 60px;
+    }
+
+    .card {
+      background-color: #1a1a1a;
+      border-radius: 12px;
+      padding: 15px;
+      width: 220px;
+      text-align: center;
+      /* box-shadow removed */
+    }
+
+    .card img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 12px;
+      /* border removed */
+    }
+
+    .name {
+      font-size: 18px;
+      font-weight: bold;
+      color: red;
+    }
+
+    .alias {
+      font-size: 13px;
+      font-weight: bold;
+      color: #ccc;
+      margin-top: 4px;
+    }
+
+    .description {
+      margin-top: 8px;
+      font-size: 13px;
+      line-height: 1.4;
+      color: #ddd;
+    }
+
+    .controls {
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background: black;
+      color: white;
+      border: 2px solid white;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-right: 10px;
+    }
+
+    button:hover {
+      background: white;
+      color: black;
+    }
+
+    input[type="range"] {
+      width: 200px;
+      vertical-align: middle;
+    }
+  </style>
+</head>
+<body>
+  <audio id="background-audio" loop>
+    <source src="https://files.catbox.moe/221rcj.mp3" type="audio/mp3">
+    Your browser does not support the audio element.
+  </audio>
+
+  <div class="controls">
+    <button onclick="playAudio()">Play</button>
+    <label for="volumeSlider">Volume:</label>
+    <input type="range" id="volumeSlider" min="0" max="1" step="0.01" value="0.5" />
+  </div>
+
+  <pre class="ascii">
+⠀⠀⠀⠀   ⢸⣷⣦⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠸⣿⣿⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⣿⣿⣧⣤⣤⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⢹⣿⣿⡿⠿⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠸⣿⣿⣶⣤⠀⠀⠀⠀⣀⣤⣤⣄⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⣿⣿⣿⡀⠀⢀⣾⣿⠟⠛⠻⢿⣿⣦⡀⠀⢀⣀⣀⣀⣀⣠⣴⣿⠿⠿⣷⣦⣀⣤⣴⣶⣶⣶⣦⡄⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⢻⣿⣿⣿⣇⠀⣾⣿⠃⠀⠀⠀⠀⠙⢿⣿⣿⠿⠿⠿⢿⣿⣿⠏⠀⠀⠀⠘⣿⣿⠛⠋⠉⠉⠙⣿⣿⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⣼⣿⠿⠿⣿⣼⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣸⣿⠇⠀⣰⠾⠿⣶⣿⣿⣦⣄⠀⠀⠀⣼⠠⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⠀⠀⢻⣿⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⣿⠀⠀⢿⣧⣾⠋⠉⠉⢿⣿⣿⣷⣶⣿⣿⡀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⠀⠀⢸⣿⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠹⣿⣦⣤⣼⣿⣿⣄⠀⢀⣼⠿⣿⡆⠀⠙⣿⡇⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⠀⢠⣼⣿⡟⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠙⠛⠉⠉⠻⢿⣿⣿⣿⡶⠿⠁⠀⣰⣿⠃⠀⠀
+⠀⠀⠀⢀⡀⠀⠀⠀⠀⢀⣿⡀⢸⣿⣿⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⢿⣷⣄⣀⣠⣾⣿⡇⠀⠀⠀
+⠀⣠⣾⡿⣿⣦⡀⠀⠀⠸⣿⣿⣿⣿⡿⠶⠀⠀⠀⠀⠀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠙⠻⠿⠛⠋⣿⣷⠀⠀⠀
+⢾⣿⡏⠀⠈⠻⢿⣷⣦⣤⣀⣿⣿⣿⣇⣀⠀⠀⠀⢀⣿⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣻⣿⡀⠀⠀
+⠀⠙⢿⣶⣄⡀⠀⠈⠉⠛⠛⠻⣿⣿⣿⣿⠋⠀⠀⠀⠀⠻⠿⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣶⣿⣆⠀⠀⠀⠛⣿⣿⠿⠷⠶
+⠀⠀⠀⠙⠻⢿⣷⣦⣤⣤⣀⣀⣻⣿⣿⣿⣿⡆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣴⡟⠛⣷⡄⠀⠀⠀⠀⠀⠿⠿⠏⠀⠀⣤⣴⣿⣟⡀⠀⠀
+⠀⠀⠀⠀⠀⠀⠈⠉⠛⠛⣿⣿⣿⣿⣿⣿⣿⣷⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⠿⠶⠟⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣠⣿⡿⠛⠿⠆⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⣧⣄⣿⣿⣿⣿⣿⣿⣷⣦⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣽⣿⣿⣧⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢿⣿⣿⣿⣿⣿⣿⣿⣿⡟⠻⣿⣿⣶⣤⣄⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⣤⣴⣾⣿⠟⠁⠀⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+  </pre>
+
+  <div class="title">Hall of Autism</div>
+
+  <div class="card-wrapper">
+    <div class="card">
+      <img src="https://files.catbox.moe/zlrwr1.png" alt="Profile Picture">
+      <div class="name">Terror 141</div>
+      <div class="alias">aka "the goon"</div>
+      <div class="description">
+        A Black AE goon that is harmless — and I thought this was funny lol.
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const audio = document.getElementById("background-audio");
+    const volumeSlider = document.getElementById("volumeSlider");
+
+    function playAudio() {
+      audio.volume = volumeSlider.value;
+      audio.play();
+    }
+
+    volumeSlider.addEventListener("input", () => {
+      audio.volume = volumeSlider.value;
+    });
+  </script>
+</body>
+</html>
